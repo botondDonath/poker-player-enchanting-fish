@@ -41,6 +41,7 @@ class Player:
         CALL = current_buy_in - our_bet
         MIN_RAISE = current_buy_in - our_bet + min_raise
         round_status = self.get_round_status(community_cards)
+        same_suits_nr = self.check_suit(card1, card2, community_cards)
 
         high_cards = card1['rank'] in ('J', 'K', 'Q', 'A') and card2['rank'] in ('J', 'K', 'Q', 'A')
 
@@ -79,7 +80,9 @@ class Player:
                 return MIN_RAISE
             elif match_count == 1:
                 return CALL
-            elif self.check_suit(card1, card2, community_cards) > 4:
+            elif same_suits_nr == 4 and round_status != 'river':
+                return CALL
+            elif same_suits_nr == 5:
                 return player['stack']
             elif self.check_if_straight(community_cards, card1, card2):
                 return MIN_RAISE * 2
