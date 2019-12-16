@@ -21,6 +21,8 @@ class Player:
             5: 'river'
         }
 
+
+
         round_status = round_status_dict[len(community_cards)]
 
         high_cards = card1['rank'] in ('J', 'K', 'Q', 'A') and card2['rank'] in ('J', 'K', 'Q', 'A')
@@ -41,6 +43,17 @@ class Player:
 
         else:
             return current_buy_in - our_bet
+
+    def check_suite(self, card1, card2, community_cards, round_status):
+        same_suite = card1['suite'] if card1['suite'] == card2['suite'] else None
+
+        same_suite_nr = 2
+
+        for card in community_cards:
+            if card['suite'] == same_suite:
+                same_suite_nr += 1
+
+        return same_suite_nr
 
     def showdown(self, game_state):
         pass
