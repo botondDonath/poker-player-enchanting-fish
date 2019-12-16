@@ -21,6 +21,13 @@ class Player:
             i += 1
         return rank_dict[card['rank']] > rank_dict[rank]
 
+    def is_hand_relatively_good(self, card1, card2):
+        return (
+                self.is_higher_than(card1, 'Q') and self.is_higher_than(card2, '8')
+        ) or (
+                self.is_higher_than(card2, 'Q') and self.is_higher_than(card1, '8')
+        )
+
     def betRequest(self, game_state):
         player_index = game_state['in_action']
         players = game_state['players']
@@ -46,18 +53,14 @@ class Player:
             if card['rank'] in (card1['rank'], card2['rank']):
                 match_count += 1
 
-        for player in players:
-            if player['name'] == 'TwoSeven' and player['bet'] > 500 and (high_cards or (match_count and self.is_higher_than(card1, '6'))):
+        for player_ in players:
+            if player_['name'] == 'TwoSeven' and player_['bet'] > 500 and (high_cards or (match_count and self.is_higher_than(card1, '6'))):
                 return CALL
 
         if round_status == 'preflop':
             if high_cards or (match_count and self.is_higher_than(card1, '6')):  # if cards are high or high pair
                 return MIN_RAISE
-            elif (
-                    self.is_higher_than(card1, 'Q') and self.is_higher_than(card2, '8')
-            ) or (
-                    self.is_higher_than(card2, 'Q') and self.is_higher_than(card1, '8')
-            ):
+            elif self.is_hand_relatively_good(card1, card2):
                 return CALL
             else:
                 return 0
