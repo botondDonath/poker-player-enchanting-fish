@@ -39,7 +39,7 @@ test_data = {
           "version": "Default random player",
 
           "stack": 1010,
-          "bet": 320
+          "bet": 200
       },
       {
           "id": 1,
@@ -66,22 +66,22 @@ test_data = {
           "status": "out",
           "version": "Default random player",
           "stack": 0,
-          "bet": 501
+          "bet": 200
       }
   ],
   "community_cards": [
-      {
-          "rank": "4",
-          "suit": "spades"
-      },
-      {
-          "rank": "Q",
-          "suit": "hearts"
-      },
-      {
-          "rank": "6",
-          "suit": "clubs"
-      }
+      # {
+      #     "rank": "4",
+      #     "suit": "spades"
+      # },
+      # {
+      #     "rank": "Q",
+      #     "suit": "hearts"
+      # },
+      # {
+      #     "rank": "6",
+      #     "suit": "clubs"
+      # }
   ]
 }
 
