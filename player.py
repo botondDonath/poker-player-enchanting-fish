@@ -49,11 +49,10 @@ class Player:
             if card['rank'] in (card1['rank'], card2['rank']):
                 match_count += 1
 
-        for player_ in players:
-            if player_['name'] == 'TwoSeven' and player_['bet'] > 500 and round_status == 'preflop':
-                return CALL
-
         if round_status == 'preflop':
+            for player_ in players:
+                if player_['name'] == 'TwoSeven' and player_['bet'] > 500:
+                    return CALL
             if high_cards or (match_count and self.is_higher_than(card1, '6')):  # if cards are high or high pair
                 return MIN_RAISE
             elif self.is_hand_relatively_good(card1, card2):
