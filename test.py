@@ -97,8 +97,15 @@ test_data = {
 
 def main():
     p = player.Player()
+    current_bet = p.betRequest(test_data)
+    test_data["players"][1]["bet"] = current_bet
+    print current_bet
+    if type(current_bet) is int and current_bet >= 0:
+        print 'OK'
+    else:
+        print 'NOT OK'
 
-    p.betRequest(test_data)
+
 
 if __name__ == '__main__':
     main()
