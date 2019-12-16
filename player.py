@@ -28,7 +28,7 @@ class Player:
         player_index = game_state['in_action']
         players = game_state['players']
         player_count = len(players)
-        active_players = [plyr['name'] if plyr['status'] == 'active' else None for plyr in players]
+        active_players = [plyr for plyr in players if plyr['status'] == 'active']
         player = players[player_index]
         card1, card2 = player['hole_cards']
 
