@@ -52,6 +52,8 @@ class Player:
         if round_status == 'preflop':
             if match_count and card1['rank'] == 'A':
                 return player['stack']
+            elif all(player_['id'] < player_index for player_ in players if player['status'] == 'active') and CALL == 0:
+                return MIN_RAISE
             for player_ in players:
                 if player_['name'] == 'TwoSeven' and player_['bet'] > 500 and (pair_in_hand or (card1 in ('J', 'K', 'Q', 'A') or card2['rank'] in ('J', 'K', 'Q', 'A'))):
                     return CALL
