@@ -52,6 +52,12 @@ class Player:
                 match_count += 1
 
         if round_status == 'preflop':
+            for plyr in active_players:
+                if plyr['name'] == 'Incognito' and plyr['bet'] > MIN_RAISE:
+                    if match_count and card1['rank'] in ('K', 'A'):
+                        return CALL
+                    else:
+                        return 0
             if match_count and card1['rank'] == 'A':
                 return player['stack']
             elif all(player_['id'] < player_index for player_ in players if player_['status'] == 'active') and CALL == 0:
