@@ -65,6 +65,8 @@ class Player:
         else:
             if game_state['dealer'] == player_index and CALL == 0:
                 return MIN_RAISE
+            elif all(player_['id'] < player_index for player_ in players if player['status'] == 'active') and CALL == 0:
+                return MIN_RAISE
             if player_count == 2:
                 for player_ in players:
                     if player_['name'] == 'TwoSeven' and (
