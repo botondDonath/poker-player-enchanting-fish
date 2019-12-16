@@ -63,6 +63,8 @@ class Player:
                 return 0
 
         else:
+            if game_state['dealer'] == player_index and CALL == 0:
+                return MIN_RAISE
             if player_count == 2:
                 for player_ in players:
                     if player_['name'] == 'TwoSeven' and player_['bet'] > 500 and (
