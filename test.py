@@ -28,6 +28,7 @@ test_data = {
   "bet_index":0,
   "small_blind":10,
   "orbits":0,
+  "in_action": 1,
   "dealer":0,
   "community_cards":[],
   "current_buy_in":0,
