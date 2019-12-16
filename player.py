@@ -76,14 +76,14 @@ class Player:
                 return MIN_RAISE
             elif all(player_['id'] < player_index for player_ in players if player_['status'] == 'active') and CALL == 0:
                 return MIN_RAISE
+            elif same_suits_nr == 5:
+                return player['stack']
             elif match_count > 1:
                 return MIN_RAISE
             elif match_count == 1:
                 return CALL
             elif same_suits_nr == 4 and round_status != 'river':
                 return CALL
-            elif same_suits_nr == 5:
-                return player['stack']
             elif self.check_if_straight(community_cards, card1, card2):
                 return MIN_RAISE * 2
             return 0
