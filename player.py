@@ -56,9 +56,6 @@ class Player:
                 return player['stack']
             elif all(player_['id'] < player_index for player_ in players if player_['status'] == 'active') and CALL == 0:
                 return MIN_RAISE
-            for player_ in active_players:
-                if player_['name'] == 'TwoSeven' and player_['bet'] > 500 and (pair_in_hand or (card1 in ('J', 'K', 'Q', 'A') or card2['rank'] in ('J', 'K', 'Q', 'A'))) and len(active_players) == 2:
-                    return CALL
             if high_cards or (match_count and self.is_higher_than(card1, '6')):  # if cards are high or high pair
                 return MIN_RAISE
             elif self.is_hand_relatively_good(card1, card2) or (match_count and not self.is_higher_than(card1, '6')):
@@ -67,11 +64,6 @@ class Player:
                 return 0
 
         else:
-            if len(active_players) == 2:
-                for player_ in active_players:
-                    if player_['name'] == 'TwoSeven' and (
-                            pair_in_hand or (card1['rank'] in ('J', 'K', 'Q', 'A') or card2['rank'] in ('J', 'K', 'Q', 'A'))):
-                        return CALL
             if game_state['dealer'] == player_index and CALL == 0:
                 return MIN_RAISE
             elif all(player_['id'] < player_index for player_ in players if player_['status'] == 'active') and CALL == 0:
