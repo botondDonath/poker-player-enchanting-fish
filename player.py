@@ -55,7 +55,7 @@ class Player:
 
         if round_status == 'preflop':
             for player_ in players:
-                if player_['name'] == 'TwoSeven' and player_['bet'] > 500:
+                if player_['name'] == 'TwoSeven' and player_['bet'] > 500 and (pair_in_hand or (card1 in ('J', 'K', 'Q', 'A') or card2['rank'] in ('J', 'K', 'Q', 'A'))):
                     return CALL
             if high_cards or (match_count and self.is_higher_than(card1, '6')):  # if cards are high or high pair
                 return MIN_RAISE
