@@ -34,20 +34,11 @@ test_data = {
       {
 
           "id": 0,
-
           "name": "Albert",
-
           "status": "active",
-
-
-
-
-
           "version": "Default random player",
 
           "stack": 1010,
-
-
           "bet": 320
       },
       {
@@ -60,22 +51,22 @@ test_data = {
           "hole_cards": [
 
               {
-                  "rank": "5",
+                  "rank": "A",
                   "suit": "hearts"
               },
               {
-                  "rank": "2",
+                  "rank": "K",
                   "suit": "diamonds"
               }
           ]
       },
       {
           "id": 2,
-          "name": "Chuck",
+          "name": "TwoSeven",
           "status": "out",
           "version": "Default random player",
           "stack": 0,
-          "bet": 0
+          "bet": 501
       }
   ],
   "community_cards": [
@@ -84,7 +75,7 @@ test_data = {
           "suit": "spades"
       },
       {
-          "rank": "A",
+          "rank": "Q",
           "suit": "hearts"
       },
       {

@@ -54,7 +54,7 @@ class Player:
                 match_count += 1
 
         for player_ in players:
-            if player_['name'] == 'TwoSeven' and player_['bet'] > 500 and (high_cards or (match_count and self.is_higher_than(card1, '6'))):
+            if player_['name'] == 'TwoSeven' and player_['bet'] > 500 and round_status == 'preflop':
                 return CALL
 
         if round_status == 'preflop':
