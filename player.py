@@ -6,6 +6,7 @@ class Player:
         player_index = game_state['in_action']
         players = game_state['players']
         player = players[player_index]
+        card1, card2 = player['hole_cards']
 
         community_cards = game_state['community_cards']
         min_raise = game_state['minimum_raise']
@@ -14,7 +15,12 @@ class Player:
         our_bet = players[player_index]['bet']
 
         if not community_cards:
-            return current_buy_in - our_bet + min_raise
+            if (
+                    card1['rank'] in ('K', 'Q', 'A') and card2['rank'] in ('K', 'Q', 'A')
+            ) or (
+                    card1['rank'] == card2['rank'] and card1['rank'] not in (str(i) for i in range(1, 7))
+            ):
+                return current_buy_in - our_bet + min_raise
         return 0
 
     def showdown(self, game_state):
