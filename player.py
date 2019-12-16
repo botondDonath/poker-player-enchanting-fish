@@ -56,9 +56,11 @@ class Player:
                 return player['stack']
             elif all(player_['id'] < player_index for player_ in players if player_['status'] == 'active') and CALL == 0:
                 return MIN_RAISE
-            if high_cards or (match_count and self.is_higher_than(card1, '6')):  # if cards are high or high pair
+            elif high_cards:
+                return CALL
+            elif match_count and self.is_higher_than(card1, '8'):  # if cards are high or high pair
                 return MIN_RAISE
-            elif self.is_hand_relatively_good(card1, card2) or (match_count and not self.is_higher_than(card1, '6')):
+            elif self.is_hand_relatively_good(card1, card2) or match_count:
                 return CALL
             else:
                 return 0
