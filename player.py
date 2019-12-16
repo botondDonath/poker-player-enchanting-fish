@@ -71,9 +71,8 @@ class Player:
             else:
                 return 0
 
-        if round_status == 'river':
-            if match_count == 1:
-                return 0
+        if round_status == 'river' and match_count == 1:
+            return 0
 
         else:
             if game_state['dealer'] == player_index and CALL == 0:
