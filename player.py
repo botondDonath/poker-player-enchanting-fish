@@ -16,12 +16,17 @@ class Player:
 
         if not community_cards:
             if (
-                    card1['rank'] in ('K', 'Q', 'A') and card2['rank'] in ('K', 'Q', 'A')
+                    card1['rank'] in ('J', 'K', 'Q', 'A') and card2['rank'] in ('J', 'K', 'Q', 'A')
             ) or (
                     card1['rank'] == card2['rank'] and card1['rank'] not in (str(i) for i in range(1, 7))
             ):
                 return current_buy_in - our_bet + min_raise
-        return 0
+
+            else:
+                return 0
+
+        else:
+            return current_buy_in - our_bet
 
     def showdown(self, game_state):
         pass
