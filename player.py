@@ -51,7 +51,7 @@ class Player:
                 match_count += 1
         if round_status == 'preflop':
             if high_cards or (match_count and self.is_higher_than(card1, '6')):
-                return MIN_RAISE
+                return "MIN_RAISE"
             else:
                 return 0
 

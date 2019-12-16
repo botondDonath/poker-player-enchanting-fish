@@ -99,10 +99,15 @@ def main():
     p = player.Player()
     current_bet = p.betRequest(test_data)
     test_data["players"][1]["bet"] = current_bet
+    print "Type is: " + str(type(current_bet))
     if type(current_bet) is int and current_bet >= 0:
         print 'TEST OK'
     else:
         print 'TEST FAILED'
+
+    print "Current bet: " + str(current_bet)
+
+
 
 
 
