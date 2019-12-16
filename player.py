@@ -48,12 +48,6 @@ class Player:
         if round_status == 'preflop':
             if high_cards or (match_count and self.is_higher_than(card1, '6')):  # if cards are high or high pair
                 return MIN_RAISE
-            else:
-                return 0
-
-        if round_status == 'flop':  # if we have three of a kind after flop we raise:
-            if match_count == 2:
-                return MIN_RAISE
             elif (
                     self.is_higher_than(card1, 'Q') and self.is_higher_than(card2, '8')
             ) or (
