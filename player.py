@@ -32,7 +32,7 @@ class Player:
                 if card['rank'] in (card1['rank'], card2['rank']):
                     match_count += 1
 
-        elif round_status != 'preflop':
+        if round_status != 'preflop':
             if high_cards or (match_count and card1['rank'] not in (str(i) for i in range(1, 7))):
                 return current_buy_in - our_bet + min_raise
 
