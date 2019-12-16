@@ -66,13 +66,13 @@ class Player:
                 return player['stack']
             return 0
 
-    def check_suite(self, card1, card2, community_cards):
-        same_suite = card1['suite'] if card1['suite'] == card2['suite'] else None
+    def check_suit(self, card1, card2, community_cards):
+        same_suite = card1['suit'] if card1['suit'] == card2['suit'] else None
 
         same_suite_nr = 2 if same_suite else 0
 
         for card in community_cards:
-            if card['suite'] == same_suite:
+            if card['suit'] == same_suite:
                 same_suite_nr += 1
 
         return same_suite_nr
