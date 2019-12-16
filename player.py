@@ -9,8 +9,12 @@ class Player:
 
         community_cards = game_state['community_cards']
         min_raise = game_state['minimum_raise']
+
+        current_buy_in = game_state['current_buy_in']
+        our_bet = players[player_index]['bet']
+
         if not community_cards:
-            return min_raise
+            return current_buy_in - our_bet + min_raise
         return 0
 
     def showdown(self, game_state):
