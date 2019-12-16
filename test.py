@@ -60,12 +60,12 @@ test_data = {
           "hole_cards": [
 
               {
-                  "rank": "6",
+                  "rank": "5",
                   "suit": "hearts"
               },
               {
-                  "rank": "K",
-                  "suit": "spades"
+                  "rank": "2",
+                  "suit": "diamonds"
               }
           ]
       },
