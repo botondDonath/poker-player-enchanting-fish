@@ -27,23 +27,22 @@ class Player:
 
         pair_in_hand = card1['rank'] == card2['rank']
         match_count = 1 if pair_in_hand else 0
-        if round_status == 'preflop':
-            for card in community_cards:
-                if card['rank'] in (card1['rank'], card2['rank']):
-                    match_count += 1
+        for card in community_cards:
+            if card['rank'] in (card1['rank'], card2['rank']):
+                match_count += 1
 
-        if round_status != 'preflop':
+        if round_status == 'preflop':
             if high_cards or (match_count and card1['rank'] not in (str(i) for i in range(1, 7))):
                 return current_buy_in - our_bet + min_raise
-
-            elif match_count > 1:
-                return current_buy_in - our_bet + min_raise
-
             else:
                 return 0
 
         else:
-            return current_buy_in - our_bet
+            if match_count > 1:
+                return current_buy_in - our_bet + min_raise
+            elif match_count == 1:
+                return current_buy_in - our_bet
+            return 0
 
     def showdown(self, game_state):
         pass
