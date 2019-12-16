@@ -1,4 +1,5 @@
 
+
 class Player:
     VERSION = "1.0"
 
@@ -38,6 +39,8 @@ class Player:
 
 
 
+        CALL = current_buy_in - our_bet
+        MIN_RAISE = current_buy_in - our_bet + min_raise
         round_status = self.get_round_status(community_cards)
 
         high_cards = card1['rank'] in ('J', 'K', 'Q', 'A') and card2['rank'] in ('J', 'K', 'Q', 'A')
@@ -49,15 +52,15 @@ class Player:
                 match_count += 1
         if round_status == 'preflop':
             if high_cards or (match_count and self.is_higher_than(card1, '6')):
-                return current_buy_in - our_bet + min_raise
+                return MIN_RAISE
             else:
                 return 0
 
         else:
             if match_count > 1:
-                return current_buy_in - our_bet + min_raise
+                return MIN_RAISE
             elif match_count == 1:
-                return current_buy_in - our_bet
+                return CALL
             return 0
 
     def check_suite(self, card1, card2, community_cards, round_status):
