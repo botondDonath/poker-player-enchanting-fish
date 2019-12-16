@@ -22,11 +22,7 @@ class Player:
         return rank_dict[card['rank']] > rank_dict[rank]
 
     def is_hand_relatively_good(self, card1, card2):
-        return (
-                self.is_higher_than(card1, 'Q') and self.is_higher_than(card2, '8')
-        ) or (
-                self.is_higher_than(card2, 'Q') and self.is_higher_than(card1, '8')
-        )
+        return self.is_higher_than(card1, '8') and self.is_higher_than(card2, '8')
 
     def betRequest(self, game_state):
         player_index = game_state['in_action']
