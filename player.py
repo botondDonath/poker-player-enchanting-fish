@@ -50,6 +50,8 @@ class Player:
                 match_count += 1
 
         if round_status == 'preflop':
+            if match_count and card1['rank'] == 'A':
+                return player['stack']
             for player_ in players:
                 if player_['name'] == 'TwoSeven' and player_['bet'] > 500:
                     return CALL
