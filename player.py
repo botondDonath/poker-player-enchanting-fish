@@ -28,6 +28,7 @@ class Player:
         player_index = game_state['in_action']
         players = game_state['players']
         player_count = len(players)
+        active_players = [plyr['name'] if plyr['status'] == 'active' else None for plyr in players]
         player = players[player_index]
         card1, card2 = player['hole_cards']
 
@@ -63,8 +64,8 @@ class Player:
                 return 0
 
         else:
-            if player_count == 2:
-                for player_ in players:
+            if len(active_players) == 2:
+                for player_ in active_players:
                     if player_['name'] == 'TwoSeven' and (
                             pair_in_hand or (card1 in ('J', 'K', 'Q', 'A') or card2['rank'] in ('J', 'K', 'Q', 'A'))):
                         return CALL
