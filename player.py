@@ -2,9 +2,20 @@
 class Player:
     VERSION = "1.0"
 
+    def get_round_status(self, community_cards):
+        round_status_dict = {
+            0: 'preflop',
+            3: 'flop',
+            4: 'turn',
+            5: 'river'
+        }
+
+        return round_status_dict[len(community_cards)]
+
     def betRequest(self, game_state):
         player_index = game_state['in_action']
         players = game_state['players']
+        player_count = len(players)
         player = players[player_index]
         card1, card2 = player['hole_cards']
 
@@ -14,14 +25,7 @@ class Player:
         current_buy_in = game_state['current_buy_in']
         our_bet = players[player_index]['bet']
 
-        round_status_dict = {
-            0: 'preflop',
-            3: 'flop',
-            4: 'turn',
-            5: 'river'
-        }
-
-        round_status = round_status_dict[len(community_cards)]
+        round_status = self.get_round_status(community_cards)
 
         high_cards = card1['rank'] in ('J', 'K', 'Q', 'A') and card2['rank'] in ('J', 'K', 'Q', 'A')
 
@@ -30,7 +34,6 @@ class Player:
         for card in community_cards:
             if card['rank'] in (card1['rank'], card2['rank']):
                 match_count += 1
-
         if round_status == 'preflop':
             if high_cards or (match_count and card1['rank'] not in (str(i) for i in range(1, 7))):
                 return current_buy_in - our_bet + min_raise
