@@ -22,7 +22,7 @@ class Player:
         return rank_dict[card['rank']] > rank_dict[rank]
 
     def is_hand_relatively_good(self, card1, card2):
-        return self.is_higher_than(card1, '6') and self.is_higher_than(card2, '6')
+        return self.is_higher_than(card1, '8') and self.is_higher_than(card2, '8')
 
     def betRequest(self, game_state):
         player_index = game_state['in_action']
@@ -61,7 +61,7 @@ class Player:
                     return CALL
             if high_cards or (match_count and self.is_higher_than(card1, '6')):  # if cards are high or high pair
                 return MIN_RAISE
-            elif self.is_hand_relatively_good(card1, card2):
+            elif self.is_hand_relatively_good(card1, card2) or (match_count and not self.is_higher_than(card1, '6')):
                 return CALL
             else:
                 return 0
