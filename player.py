@@ -58,12 +58,14 @@ class Player:
                 return current_buy_in - our_bet + min_raise
             elif match_count == 1:
                 return current_buy_in - our_bet
+            elif self.check_suite(card1, card2, community_cards) > 4:
+                return current_buy_in - our_bet + game_state['stack']
             return 0
 
-    def check_suite(self, card1, card2, community_cards, round_status):
+    def check_suite(self, card1, card2, community_cards):
         same_suite = card1['suite'] if card1['suite'] == card2['suite'] else None
 
-        same_suite_nr = 2
+        same_suite_nr = 2 if same_suite else 0
 
         for card in community_cards:
             if card['suite'] == same_suite:
