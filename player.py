@@ -65,7 +65,7 @@ class Player:
         else:
             if player_count == 2:
                 for player_ in players:
-                    if player_['name'] == 'TwoSeven' and player_['bet'] > 500 and (
+                    if player_['name'] == 'TwoSeven' and (
                             pair_in_hand or (card1 in ('J', 'K', 'Q', 'A') or card2['rank'] in ('J', 'K', 'Q', 'A'))):
                         return CALL
             elif match_count > 1:
