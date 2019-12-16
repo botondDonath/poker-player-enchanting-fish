@@ -49,12 +49,6 @@ class Player:
         if round_status == 'preflop':
             if high_cards or (match_count and self.is_higher_than(card1, '6')):  # if cards are high or high pair
                 return MIN_RAISE
-            else:
-                return 0
-
-        if round_status == 'flop':  # if we have three of a kind after flop we raise:
-            if match_count == 2:
-                return MIN_RAISE
             elif (
                     self.is_higher_than(card1, 'Q') and self.is_higher_than(card2, '8')
             ) or (
@@ -73,13 +67,13 @@ class Player:
                 return player['stack']
             return 0
 
-    def check_suite(self, card1, card2, community_cards):
-        same_suite = card1['suite'] if card1['suite'] == card2['suite'] else None
+    def check_suit(self, card1, card2, community_cards):
+        same_suite = card1['suit'] if card1['suit'] == card2['suit'] else None
 
         same_suite_nr = 2 if same_suite else 0
 
         for card in community_cards:
-            if card['suite'] == same_suite:
+            if card['suit'] == same_suite:
                 same_suite_nr += 1
 
         return same_suite_nr
