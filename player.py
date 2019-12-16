@@ -12,6 +12,15 @@ class Player:
 
         return round_status_dict[len(community_cards)]
 
+    def is_higher_than(self, card, rank):
+        ranks = ('1', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A')
+        rank_dict = {}
+        i = 1
+        for rank_ in ranks:
+            rank_dict[rank_] = i
+            i += 1
+        return rank_dict[card['rank']] > rank_dict[rank]
+
     def betRequest(self, game_state):
         player_index = game_state['in_action']
         players = game_state['players']
@@ -35,7 +44,7 @@ class Player:
             if card['rank'] in (card1['rank'], card2['rank']):
                 match_count += 1
         if round_status == 'preflop':
-            if high_cards or (match_count and card1['rank'] not in (str(i) for i in range(1, 7))):
+            if high_cards or (match_count and self.is_higher_than(card1, '6')):
                 return current_buy_in - our_bet + min_raise
             else:
                 return 0
