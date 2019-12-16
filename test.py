@@ -98,7 +98,7 @@ test_data = {
 def main():
     p = player.Player()
 
-    p.betRequest(test_data)
+    print(p.betRequest(test_data))
 
 if __name__ == '__main__':
     main()

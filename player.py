@@ -1,4 +1,3 @@
-
 class Player:
     VERSION = "1.0"
 
@@ -34,10 +33,6 @@ class Player:
         current_buy_in = game_state['current_buy_in']
         our_bet = players[player_index]['bet']
 
-
-
-
-
         CALL = current_buy_in - our_bet
         MIN_RAISE = current_buy_in - our_bet + min_raise
         round_status = self.get_round_status(community_cards)
@@ -52,6 +47,12 @@ class Player:
         if round_status == 'preflop':
             if high_cards or (match_count and self.is_higher_than(card1, '6')):
                 return MIN_RAISE
+            elif (
+                    self.is_higher_than(card1, 'Q') and self.is_higher_than(card2, '8')
+            ) or (
+                    self.is_higher_than(card2, 'Q') and self.is_higher_than(card1, '8')
+            ):
+                return CALL
             else:
                 return 0
 
@@ -77,4 +78,3 @@ class Player:
 
     def showdown(self, game_state):
         pass
-
